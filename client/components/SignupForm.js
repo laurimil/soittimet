@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AuthForm from './AuthForm';
 import mutation from '../mutations/Signup';
 import { graphql } from 'react-apollo';
-import query from '../queries/CurrentUser';
+import query from '../queries/currentUser';
 import { hashHistory } from 'react-router';
 
 class SignupForm extends Component {

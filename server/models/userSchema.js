@@ -7,7 +7,11 @@ const Schema = mongoose.Schema;
 // plain text - see the authentication helpers below.
 const UserSchema = new Schema({
   email: String,
-  password: String
+  password: String,
+  items: [{
+    type: Schema.Types.ObjectId,
+    ref: 'item'
+  }]
 });
 
 // The user's password is never saved in plain text.  Prior to saving the
@@ -38,5 +42,24 @@ UserSchema.methods.comparePassword = function comparePassword(candidatePassword,
     cb(err, isMatch);
   });
 };
+
+UserSchema.statics.findItems = function(id) {
+  return this.findById(id)
+    .populate('items')
+    .then(user => user.items);
+}
+
+UserSchema.statics.addItem = function(args) {
+  const Item = mongoose.model('item');
+  const { title, description, price, maker, year, userId } = args;
+
+  return this.findById(userId)
+    .then(user => {
+      const item = new Item({ title, description, price, maker, year })
+      user.items.push(item)
+      return Promise.all([item.save(), user.save()])
+        .then(([item, user]) => user);
+    });
+}
 
 mongoose.model('user', UserSchema);

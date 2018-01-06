@@ -10,6 +10,7 @@ const {
 } = graphql;
 const mongoose = require ('mongoose');
 const Item = mongoose.model('item');
+const User = mongoose.model('user');
 const ItemType = require('./types/item_type');
 const UserType = require('./types/user_type');
 const AuthService = require('../services/auth');
@@ -45,17 +46,32 @@ const mutation = new GraphQLObjectType({
         return AuthService.login({ email, password, req});
       }
     },
-    addItem: {
-      type: ItemType,
-      args: {
+    // addItem: {
+    //   type: ItemType,
+    //   args: {
+    //     title: { type: GraphQLString },
+    //     description: { type: GraphQLString },
+    //     maker: { type: GraphQLString },
+    //     year: { type: GraphQLInt },
+    //     price: { type: GraphQLInt },
+    //     user: { type: new GraphQLNonNull(GraphQLID)}
+    //   },
+    //   resolve(parentValue, {title, description, price, maker, year, user} ){
+    //     return (new Item({ title, description, price, maker, year, user})).save();
+    //   }
+    // },
+    addItemToUser:{
+      type: UserType,
+      args:{
         title: { type: GraphQLString },
         description: { type: GraphQLString },
         maker: { type: GraphQLString },
         year: { type: GraphQLInt },
         price: { type: GraphQLInt },
+        userId: { type: new GraphQLNonNull(GraphQLID) }
       },
-      resolve(parentValue, {title, description, price, maker, year} ){
-        return (new Item({ title, description, price, maker, year })).save();
+      resolve(parentValue, args) {
+        return User.addItem(args);
       }
     },
     editItem: {

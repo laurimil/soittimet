@@ -1,10 +1,10 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  {
-    user {
+  query UserItems($id: ID!){
+    itemsByUser(id:$id){
       id
-      email
+      title
     }
   }
 `;

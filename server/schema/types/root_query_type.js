@@ -21,6 +21,14 @@ const RootQueryType = new GraphQLObjectType({
         return req.user;
       }
     },
+    userById: {
+      type: UserType,
+      args: { id: {type: new GraphQLNonNull(GraphQLID) } },
+      resolve(parentValue, {id}) {
+        return User.findById(id);
+          // .then(res => console.log(res));
+      }
+    },
     item: {
       type: ItemType,
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
@@ -34,14 +42,13 @@ const RootQueryType = new GraphQLObjectType({
         return Item.find({});
       }
     },
-    // itemsByUser: {
-    //   type: new GraphQLList(ItemType),
-    //   args: { id { type: new GraphQLNonNull(GraphQLID) } },
-    //   resolve(parentValue, { id }) {
-    //     return Item.findById(id);
-    //     //maarittelematon viela
-    //   }
-    // }
+    itemsByUser: {
+      type: new GraphQLList(ItemType),
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(parentValue, { id }) {
+        return User.findItems(id);
+      }
+    }
   })
 });
 

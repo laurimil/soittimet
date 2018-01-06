@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import currentUserQuery from '../queries/CurrentUser';
+import currentUserQuery from '../queries/currentUser';
 import { hashHistory } from 'react-router';
 
 export default (WrappedComponent) => {
