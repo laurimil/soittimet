@@ -33,7 +33,7 @@ const Root = () => {
           <IndexRoute component={ItemList} />
           <Route path="login" component={LoginForm} />
           <Route path="signup" component={SignupForm} />
-          <Route path="user" component={requireAuth(Dashboard)} />
+          <Route path="dashboard" component={requireAuth(Dashboard)} />
           <Route path="items/new" component={ItemCreate} />
           <Route path="items/:id" component={ItemDetail} />
         </Route>

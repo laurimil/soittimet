@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import UserItems from './UserItems';
 import ItemCreate from './ItemCreate';
+import query from '../queries/currentUser';
+import { graphql } from 'react-apollo';
 
 class DashBoard extends Component {
 
   render() {
-    const { id } = this.props.data.user;
+    const { user } = this.props.data;
+    if(!user) { return <div>Loading...</div>; }
+
     return (
       <div>
         <h3>DashBoard</h3>
-        <UserItems userId={id}/>
-
-
-
+        <UserItems items={user.items} />
       </div>
     );
   }
 }
 
-export default DashBoard;
+export default graphql(query)(DashBoard);
