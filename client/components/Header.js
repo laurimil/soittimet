@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import query from '../queries/currentUser';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 import mutation from '../mutations/logout';
 
 class Header extends Component {
@@ -10,13 +10,20 @@ class Header extends Component {
       refetchQueries: [{ query }]
     });
   }
+  onBoardClick(){
+    hashHistory.push('/dashboard')
+  }
   renderButtons(){
     const { loading, user } = this.props.data;
     if(loading){ return <div />;}
 
     if (user) {
       return (
-        <li><a onClick={this.onLogoutClick.bind(this)}>Logout</a></li>);
+        <div>
+          <li><a onClick={this.onBoardClick.bind(this)}>User</a></li>
+          <li><a onClick={this.onLogoutClick.bind(this)}>Logout</a></li>
+        </div>
+        );
     } else {
       return (
         <div>

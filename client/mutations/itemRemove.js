@@ -1,10 +1,9 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  {
-    user {
+  mutation itemRemove ($id:ID!){
+    removeItem(id:$id) {
       id
-      email
     }
   }
 `;

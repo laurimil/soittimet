@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { Link } from 'react-router';
 import gql from 'graphql-tag';
 import query from '../queries/itemsFind';
 
@@ -7,12 +8,15 @@ class ItemList extends Component {
 
   renderItems(){
 
-    console.log(this.props.data.items);
+    // console.log(this.props.data.items);
     return this.props.data.items.map(({id, title, price}) => {
       return (
         <li key={id} className="collection-item">
-          <div>{title}</div>
-          <div>Price: {price}</div>
+          <Link to={`items/${id}`}>
+            <div>{title}</div>
+            <div>Price: {price}</div>
+          </Link>
+
         </li>
 
       )
@@ -24,9 +28,7 @@ class ItemList extends Component {
 
     return (
       <ul className="collection">
-        <ul className="collection">
-          {this.renderItems()}
-        </ul>
+        {this.renderItems()}
       </ul>
     )
   }

@@ -10,7 +10,10 @@ export default gql`
       year
       price
       user{
-        items
+        items{
+          id
+          title
+        }
       }
     }
   }

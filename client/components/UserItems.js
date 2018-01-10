@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import userItems from '../queries/userItems';
 
 class UserItems extends Component {
 
@@ -10,16 +10,18 @@ class UserItems extends Component {
       return (
         <li key={id} className="collection-item">
           {title}
-          <i className="material-icons right">edit</i>
-          <i className="material-icons right">delete</i>
-
+          <Link to={`user/items/${id}`}>
+            <i className="material-icons right">edit</i>
+          </Link>
+          <i
+            className="material-icons right"
+            onClick={()=> this.props.onItemDelete(id)}>delete</i>
         </li>
       );
     });
   }
 
   render() {
-
     return (
       <ul className="collection">
         <h3>Your Items</h3>
@@ -28,7 +30,5 @@ class UserItems extends Component {
     );
   }
 }
-
-
 
 export default UserItems;

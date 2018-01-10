@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-import mutation from '../mutations/itemCreate';
+import { Link, hashHistory } from 'react-router';
 import { graphql } from 'react-apollo';
+import query from '../queries/currentUser';
+import mutation from '../mutations/itemCreate';
+
 import ItemForm from './ItemForm';
-import { hashHistory } from 'react-router';
 
 class ItemCreate extends Component {
   constructor(props){
@@ -12,7 +13,7 @@ class ItemCreate extends Component {
     this.state = { errors: [] };
   }
 
-  onSubmit({ title, description, maker, year, price, userId }) {
+  onSubmit({ title, description, maker, year, price }) {
     event.preventDefault();
 
     this.props.mutate({
@@ -22,24 +23,36 @@ class ItemCreate extends Component {
         maker: maker,
         year: year,
         price: price,
-        userId: userId
+        userId: this.props.data.user.id
       }
     }).catch(res => {
       const errors = res.graphQLErrors.map(error => error.message);
       this.setState({errors});
     });
-    hashHistory.push('/');
+    hashHistory.push('/dashboard');
   }
 
   render(){
+    const { user } = this.props.data;
+    if(!user) { return <div>Loading...</div>; }
+    const item = {
+      title: '',
+      description: '',
+      maker: '',
+      year: '',
+      price: ''
+    }
+
     return (
       <div>
         <Link to="dashboard">Dashboard</Link>
         <h3>Create a New Listing</h3>
-        <ItemForm errors={this.state.errors} onSubmit={this.onSubmit.bind(this)} />
+        <ItemForm errors={this.state.errors} onSubmit={this.onSubmit.bind(this)} item={item}/>
       </div>
     )
   }
 }
 
-export default graphql(mutation)(ItemCreate);
+export default graphql(query)(
+  graphql(mutation)(ItemCreate)
+);

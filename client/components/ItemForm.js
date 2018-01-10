@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
 
 class ItemForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { title: '', description:'', maker: '', year: '', price: '', userId: '5a3434928ddfbe235c02e1ed'};
+    const {id, title, description, maker, year, price } = props.item;
+
+    this.state = {
+      id: id,
+      title: title,
+      description: description,
+      maker: maker,
+      year: year,
+      price: price
+    };
   }
 
   onSubmit(event) {
@@ -14,6 +24,10 @@ class ItemForm extends Component {
   }
 
   render() {
+
+
+    console.log(this.state);
+
     return (
       <div className="row">
         <form onSubmit={this.onSubmit.bind(this)}>
@@ -39,7 +53,8 @@ class ItemForm extends Component {
           <div className="errors">
             {this.props.errors.map(error => <div key={error}>{error}</div>)}
           </div>
-          <button className="btn">Submit</button>
+          <button className="btn">Save</button>
+          <button className="btn right red">Cancel</button>
         </form>
       </div>
 

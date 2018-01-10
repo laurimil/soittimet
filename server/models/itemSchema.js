@@ -13,8 +13,6 @@ const ItemSchema = new Schema({
   price: {type: Number, default: 0 }
 });
 
-
-
 ItemSchema.statics.editItem = function(args) {
   const {id, title, description, price, maker, year} = args;
   const itemUpdate = {title, description, price, maker, year};
@@ -29,11 +27,5 @@ ItemSchema.statics.editItem = function(args) {
     });
   });
 }
-
-// SongSchema.statics.findItems = function(id){
-//   return this.findById(id)
-//     .populate('items')
-//     .then()
-// }
 
 mongoose.model('item', ItemSchema);
