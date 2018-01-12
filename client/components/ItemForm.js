@@ -25,9 +25,6 @@ class ItemForm extends Component {
 
   render() {
 
-
-    console.log(this.state);
-
     return (
       <div className="row">
         <form onSubmit={this.onSubmit.bind(this)}>

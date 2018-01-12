@@ -15,22 +15,25 @@ class ItemEdit extends Component {
 
   componentWillUpdate(nextProps) {
     console.log(this.props);
-    if(this.props.data.item && nextProps.data.item) {
-      hashHistory.push('/dashboard');
-    }
+    console.log(nextProps);
+    // if(this.props.data.item && nextProps.data.item) {
+    //   hashHistory.push('/dashboard');
+    // }
   }
 
-  onSubmit({ id, title, description, maker, year, price }) {
+  onSubmit(data) {
+    const { id, title, description, maker, year, price } = data;
     event.preventDefault();
-    
+    console.log(data);
+
     this.props.mutate({
       variables: {
-        id: id,
-        title: title,
-        description: description,
-        maker: maker,
-        year: year,
-        price: price
+        id: id || '',
+        title: title || '',
+        description: description || '',
+        maker: maker || '',
+        year: year || '',
+        price: price || ''
       }
     }).catch(res => {
       const errors = res.graphQLErrors.map(error => error.message);

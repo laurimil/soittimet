@@ -6,9 +6,9 @@ const ItemSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'user'
   },
-  title: {type: String},
-  description: {type: String},
-  maker: {type: String},
+  title: {type: String, default: ''},
+  description: {type: String, default: ''},
+  maker: {type: String, default: ''},
   year: {type: Number, default: 0 },
   price: {type: Number, default: 0 }
 });
