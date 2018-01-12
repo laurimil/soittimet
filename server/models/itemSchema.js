@@ -20,7 +20,7 @@ ItemSchema.statics.editItem = function(args) {
   return new Promise((resolve, reject)=>{
     this.findByIdAndUpdate(
       {_id: id},
-      {$set: itemUpdate},
+      {$set: itemUpdate}, 
       {returnDocument: true}
     ).exec((err,res)=>{
       err ? reject(err) : resolve(res);
