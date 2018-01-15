@@ -13,17 +13,12 @@ class ItemCreate extends Component {
     this.state = { errors: [] };
   }
 
-  onSubmit({ title, description, maker, year, price }) {
+  onSubmit(data) {
     event.preventDefault();
+    const { title, description, maker, year, price } = data;
 
     this.props.mutate({
-      variables: {
-        title: title,
-        description: description,
-        maker: maker,
-        year: year,
-        price: price,
-        userId: this.props.data.user.id
+      variables: { title, description, maker, year, price, userId: this.props.data.user.id
       }
     }).catch(res => {
       const errors = res.graphQLErrors.map(error => error.message);
@@ -49,7 +44,7 @@ class ItemCreate extends Component {
         <h3>Create a New Listing</h3>
         <ItemForm errors={this.state.errors} onSubmit={this.onSubmit.bind(this)} item={item}/>
       </div>
-    )
+    );
   }
 }
 

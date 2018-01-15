@@ -13,27 +13,25 @@ class ItemEdit extends Component {
     this.state = { errors: [] };
   }
 
-  componentWillUpdate(nextProps) {
-    console.log(this.props);
-    console.log(nextProps);
-    // if(this.props.data.item && nextProps.data.item) {
-    //   hashHistory.push('/dashboard');
-    // }
-  }
+  // componentWillUpdate(nextProps) {
+  //   console.log(this.props);
+  //   console.log(nextProps);
+  // }
 
   onSubmit(data) {
-    const { id, title, description, maker, year, price } = data;
     event.preventDefault();
+    const { id, title, description, maker, year, price } = data;
+
     console.log(data);
 
     this.props.mutate({
       variables: {
-        id: id || '',
-        title: title || '',
-        description: description || '',
-        maker: maker || '',
-        year: year || '',
-        price: price || ''
+        id,
+        title,
+        description,
+        maker,
+        year,
+        price
       }
     }).catch(res => {
       const errors = res.graphQLErrors.map(error => error.message);

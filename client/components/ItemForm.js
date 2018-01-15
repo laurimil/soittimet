@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { hashHistory} from 'react-router';
+import query from '../queries/userItems';
 
 class ItemForm extends Component {
   constructor(props) {
@@ -21,6 +23,10 @@ class ItemForm extends Component {
     event.preventDefault();
 
     this.props.onSubmit(this.state);
+  }
+  onCancel(event){
+    event.preventDefault();
+    hashHistory.push('/dashboard');
   }
 
   render() {
@@ -50,8 +56,8 @@ class ItemForm extends Component {
           <div className="errors">
             {this.props.errors.map(error => <div key={error}>{error}</div>)}
           </div>
-          <button className="btn">Save</button>
-          <button className="btn right red">Cancel</button>
+          <button className="btn red" type='button' onClick={this.onCancel}>Cancel</button>
+          <button className="btn right">Save</button>
         </form>
       </div>
 
