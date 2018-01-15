@@ -4,9 +4,8 @@
   "description": "soitinkirppis",
   "main": "index.js",
   "scripts": {
-    "build": "cd packages/react-scripts && node scripts/build.js",
     "dev": "nodemon index.js --ignore client",
-    "start": "node index.js"
+    "start": "nf start"
   },
   "repository": {
     "type": "git",
@@ -31,6 +30,7 @@
     "express": "^4.14.0",
     "express-graphql": "^0.6.1",
     "express-session": "^1.15.0",
+    "foreman": "^2.0.0",
     "graphql": "^0.8.2",
     "graphql-tag": "^1.2.4",
     "html-webpack-plugin": "^2.26.0",
