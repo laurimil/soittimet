@@ -4,6 +4,7 @@
   "description": "soitinkirppis",
   "main": "index.js",
   "scripts": {
+    "build": "cd packages/react-scripts && node scripts/build.js",
     "dev": "nodemon index.js --ignore client",
     "start": "node index.js"
   },
