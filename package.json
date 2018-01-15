@@ -4,9 +4,8 @@
   "description": "soitinkirppis",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
     "dev": "nodemon index.js --ignore client",
-    "start": "nf start"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
