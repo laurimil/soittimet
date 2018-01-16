@@ -1,6 +1,9 @@
 {
   "name": "soittimet-react-gql",
   "version": "1.0.0",
+  "engines": {
+    "node":"6.10.1"
+  }
   "description": "soitinkirppis",
   "main": "index.js",
   "scripts": {
