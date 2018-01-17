@@ -2,7 +2,7 @@
   "name": "soittimet-react-gql",
   "version": "1.0.0",
   "engines": {
-    "node":"6.10.1"
+    "node": "6.10.1"
   },
   "description": "soitinkirppis",
   "main": "index.js",
@@ -37,6 +37,7 @@
     "foreman": "^2.0.0",
     "graphql": "^0.8.2",
     "graphql-tag": "^1.2.4",
+    "grunt-cli": "^1.2.0",
     "html-webpack-plugin": "^2.26.0",
     "lodash": "^4.17.4",
     "mongoose": "^4.7.8",
