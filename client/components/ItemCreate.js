@@ -28,6 +28,7 @@ class ItemCreate extends Component {
   }
 
   render(){
+    
     const { user } = this.props.data;
     if(!user) { return <div>Loading...</div>; }
     const item = {

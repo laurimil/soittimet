@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link, hashHistory } from 'react-router';
 import { graphql } from 'react-apollo';
+
 import mutation from '../mutations/itemEdit';
 import fetchItem from '../queries/fetchItem';
+import userItems from '../queries/userItems';
 
 import ItemForm from './ItemForm';
 
@@ -12,11 +14,6 @@ class ItemEdit extends Component {
 
     this.state = { errors: [] };
   }
-
-  // componentWillUpdate(nextProps) {
-  //   console.log(this.props);
-  //   console.log(nextProps);
-  // }
 
   onSubmit(data) {
     event.preventDefault();
@@ -32,11 +29,22 @@ class ItemEdit extends Component {
         maker,
         year,
         price
-      }
+      },
+      update: (proxy, { data: { createItem } }) => {
+        // Read the data from our cache for this query.
+        const data = proxy.readQuery({ query: userItems });
+
+        // Add our todo from the mutation to the end.
+        data.user.items.push(createItem);
+
+        // Write our data back to the cache.
+        proxy.writeQuery({ query: userItems, data });
+      },
     }).catch(res => {
       const errors = res.graphQLErrors.map(error => error.message);
       this.setState({errors});
     });
+    hashHistory.push('/dashboard');
   }
 
   render(){
@@ -55,6 +63,6 @@ class ItemEdit extends Component {
 
 export default graphql(mutation)(
   graphql(fetchItem, {
-  options: (props) => { return { variables: { id: props.params.id } } }
-})(ItemEdit)
+    options: (props) => { return { variables: { id: props.params.id } } }
+  })(ItemEdit)
 );

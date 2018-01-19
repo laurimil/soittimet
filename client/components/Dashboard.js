@@ -19,11 +19,21 @@ class DashBoard extends Component {
       .then(()=> this.props.data.refetch())
   }
 
+  componentDidMount(){
+    // this.props.mutate({
+    //   variables: { title: this.state.title },
+    //   refetchQueries: [{ query }]
+    // }).then(() => hashHistory.push('/'));
+    
+    this.props.data.refetch({
+        options: { forceFetch: true }
+    });
+  }
+
   render() {
     const { user } = this.props.data;
     if(!user) {
       return <div>Loading...</div>;
-
     }
 
     return (

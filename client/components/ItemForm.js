@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { hashHistory} from 'react-router';
-import query from '../queries/userItems';
 
 class ItemForm extends Component {
   constructor(props) {
@@ -9,14 +8,7 @@ class ItemForm extends Component {
 
     const {id, title, description, maker, year, price } = props.item;
 
-    this.state = {
-      id: id,
-      title: title,
-      description: description,
-      maker: maker,
-      year: year,
-      price: price
-    };
+    this.state = { id, title, description, maker, year, price };
   }
 
   onSubmit(event) {
