@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 
 // Create a new Express application
 const app = express();
+require('dotenv').config()
 
 // Replace with your mongoLab URI
 
