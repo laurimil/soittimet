@@ -1,5 +1,5 @@
 {
-  "name": "soittimet-react-gql",
+  "name": "soittimet.net",
   "version": "1.0.0",
   "engines": {
     "node": ">=6.10.1"
@@ -8,19 +8,19 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon -r dotenv/config index.js --ignore client",
-    "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "start": "webpack-dev-server --mode development --open --config webpack.dev.js",
+    "build": "webpack --mode production --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/laurimil/soittimet-react-gql.git"
+    "url": "git+https://github.com/laurimil/soittimet.git"
   },
   "author": "Lauri Lehto",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/laurimil/soittimet-react-gql/issues"
+    "url": "https://github.com/laurimil/soittimet/issues"
   },
-  "homepage": "https://github.com/laurimil/soittimet-react-gql#readme",
+  "homepage": "https://github.com/laurimil/soittimet#readme",
   "dependencies": {
     "apollo-client": "^2.2.7",
     "axios": "^0.18.0",
