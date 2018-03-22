@@ -1,26 +1,26 @@
 {
-  "name": "soittimet-react-gql",
+  "name": "soittimet",
   "version": "1.0.0",
   "engines": {
-    "node": "6.10.1"
+    "node": ">=6.10.1"
   },
-  "description": "soitinkirppis",
+  "description": "music instruments sales app",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js --ignore client",
+    "dev": "nodemon -r dotenv/config index.js --ignore client",
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/laurimil/soittimet-react-gql.git"
+    "url": "git+https://github.com/laurimil/soittimet.git"
   },
   "author": "Lauri Lehto",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/laurimil/soittimet-react-gql/issues"
+    "url": "https://github.com/laurimil/soittimet/issues"
   },
-  "homepage": "https://github.com/laurimil/soittimet-react-gql#readme",
+  "homepage": "https://github.com/laurimil/soittimet#readme",
   "dependencies": {
     "apollo-client": "^0.8.2",
     "axios": "^0.15.3",
