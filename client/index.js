@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 // import { Router, IndexRoute } from 'react-router';
 import ApolloClient from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
@@ -30,7 +30,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache().restore(window.__APOLLO_STATE__),
   dataIdFromObject: o => o.id
 });
-
+console.log("log");
 const Root = () => {
   return (
     <ApolloProvider client={client}>

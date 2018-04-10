@@ -8,7 +8,7 @@ class ItemList extends Component {
 
   renderItems(){
 
-    // console.log(this.props.data.items);
+    console.log(this.props.data.items);
     return this.props.data.items.map(({id, title, price}) => {
       return (
         <li key={id} className="collection-item">
