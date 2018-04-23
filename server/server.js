@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 
 // Create a new Express application
 const app = express();
+require('dotenv').config()
 
 // Replace with your mongoLab URI
 
@@ -20,7 +21,6 @@ mongoose.Promise = global.Promise;
 
 // Connect to the mongoDB instance and log a message
 // on success or failure
-console.log(process.env.MONGODB_URI);
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection
     .once('open', () => console.log('Connected to MongoLab instance.'))

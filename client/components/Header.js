@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import query from '../queries/currentUser';
-import { Link, hashHistory } from 'react-router';
+import { Link } from 'react-router';
 import mutation from '../mutations/logout';
 
 class Header extends Component {
+
   onLogoutClick() {
     this.props.mutate({
       refetchQueries: [{ query }]
     });
   }
-  onBoardClick(){
-    hashHistory.push('/dashboard')
-  }
+  // onBoardClick(){
+  //   hashHistory.push('/dashboard')
+  // }
   renderButtons(){
     const { loading, user } = this.props.data;
+    console.log(this.props.data);
     if(loading){ return <div />;}
 
     if (user) {

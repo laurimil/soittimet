@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, hashHistory } from 'react-router';
+import { Link } from 'react-router';
 import { graphql } from 'react-apollo';
 import query from '../queries/currentUser';
 import mutation from '../mutations/itemCreate';
@@ -24,7 +24,7 @@ class ItemCreate extends Component {
       const errors = res.graphQLErrors.map(error => error.message);
       this.setState({errors});
     });
-    hashHistory.push('/dashboard');
+    // hashHistory.push('/dashboard');
   }
 
   render(){

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { hashHistory} from 'react-router';
+// import { hashHistory} from 'react-router';
 
 class ItemForm extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class ItemForm extends Component {
   }
   onCancel(event){
     event.preventDefault();
-    hashHistory.push('/dashboard');
+    // hashHistory.push('/dashboard');
   }
 
   render() {
