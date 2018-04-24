@@ -23,9 +23,12 @@ class SignupForm extends Component {
       variables: { email, password },
       refetchQueries:[{ query }]
     }).catch(res => {
+      console.log(res);
       const errors = res.graphQLErrors.map(error => error.message);
       this.setState({ errors });
     });
+    console.log(this.props);
+    
   }
 
   render() {

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import query from '../queries/currentUser';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import mutation from '../mutations/logout';
+import history from '../history';
 
 class Header extends Component {
 
@@ -11,12 +12,12 @@ class Header extends Component {
       refetchQueries: [{ query }]
     });
   }
-  // onBoardClick(){
-  //   hashHistory.push('/dashboard')
-  // }
+  onBoardClick(){
+    history.push('/dashboard');
+  }
   renderButtons(){
     const { loading, user } = this.props.data;
-    console.log(this.props.data);
+    // console.log('Header ' + this.props.data.user);
     if(loading){ return <div />;}
 
     if (user) {
@@ -36,7 +37,7 @@ class Header extends Component {
             <Link to="/login">Login</Link>
           </li>
         </div>
-      )
+      );
     }
   }
   render() {

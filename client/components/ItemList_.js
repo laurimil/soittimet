@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import gql from 'graphql-tag';
-import query from '../queries/itemList';
+import query from '../queries/itemsFind';
 
 class ItemList extends Component {
 
@@ -24,6 +24,7 @@ class ItemList extends Component {
   render() {
     console.log(this.props.data);
     if(this.props.data.loading) { return <div>Loading...</div>; }
+    console.log('ItemList');
 
     return (
       <ul className="collection">
