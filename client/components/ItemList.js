@@ -7,8 +7,6 @@ import query from '../queries/itemList';
 class ItemList extends Component {
 
   renderItems(){
-    console.log('itemsLog');
-    console.log('ItemList' + this.props.data.items);
     return this.props.data.items.map(({id, title, price}) => {
       return (
         <li key={id} className="collection-item">
@@ -22,7 +20,6 @@ class ItemList extends Component {
   }
 
   render() {
-    console.log(this.props.data);
     if(this.props.data.loading) { return <div>Loading...</div>; }
 
     return (

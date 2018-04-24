@@ -34,11 +34,11 @@ const client = new ApolloClient({
 
 const Root = () => {
   return (
-    <Router history={history}>
       <ApolloProvider client={client}>
+       <Router history={history}>
         <div>
           <Route path="/" component={App} />
-          <Route path="/list" component={ItemList} />
+          <Route exact path="/" component={ItemList} />
           <Route path="/login" component={LoginForm} />
           <Route path="/signup" component={SignupForm} />
           <Route path="/dashboard" component={requireAuth(Dashboard)} />
@@ -46,8 +46,9 @@ const Root = () => {
           <Route path="/items/:id" component={ItemDetail} />
           <Route path="/user/items/:id" component={ItemEdit} />
         </div>
+        </Router>
       </ApolloProvider>
-    </Router>
+    
   );
 };
 
