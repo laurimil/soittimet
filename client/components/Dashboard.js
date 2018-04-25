@@ -10,7 +10,9 @@ class DashBoard extends Component {
 
   constructor(props) {
     super(props);
-
+   
+    let match = props.match;//← here
+    console.log(match);
     this.onItemDelete = this.onItemDelete.bind(this);
   }
 

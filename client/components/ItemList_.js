@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import gql from 'graphql-tag';
-import query from '../queries/itemsFind';
+import query from '../queries/itemsList';
 
 class ItemList extends Component {
 

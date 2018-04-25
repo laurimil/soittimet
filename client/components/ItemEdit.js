@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { graphql } from 'react-apollo';
 
 import mutation from '../mutations/itemEdit';
-import fetchItem from '../queries/fetchItem';
+import itemDetail from '../queries/itemDetail';
 import userItems from '../queries/userItems';
 
 import ItemForm from './ItemForm';
@@ -62,7 +62,7 @@ class ItemEdit extends Component {
 }
 
 export default graphql(mutation)(
-  graphql(fetchItem, {
+  graphql(itemDetail, {
     options: (props) => { return { variables: { id: props.params.id } } }
   })(ItemEdit)
 );

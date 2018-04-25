@@ -41,10 +41,12 @@ const Root = () => {
           <Route exact path="/" component={ItemList} />
           <Route path="/login" component={LoginForm} />
           <Route path="/signup" component={SignupForm} />
-          <Route path="/dashboard" component={requireAuth(Dashboard)} />
-          <Route path="/items/new" component={requireAuth(ItemCreate)} />
           <Route path="/items/:id" component={ItemDetail} />
-          <Route path="/user/items/:id" component={ItemEdit} />
+          {/* <Route exact path="/items/:id" render={(props) => <ItemDetail {...props}/>} /> */}
+          {/* <Route exact path="/dashboard" component={requireAuth(Dashboard)} /> */}
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/user/items/new" component={requireAuth(ItemCreate)} />
+          <Route path="/user/items/:id" component={requireAuth (ItemEdit)} />
         </div>
         </Router>
       </ApolloProvider>
