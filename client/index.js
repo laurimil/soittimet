@@ -17,7 +17,7 @@ import ItemDetail from './components/ItemDetail';
 import ItemList from './components/ItemList';
 import ItemEdit from './components/ItemEdit';
 
-import history from './history';
+// import history from './history';
 
 const link = new HttpLink({
   uri: '/graphql',
@@ -35,18 +35,17 @@ const client = new ApolloClient({
 const Root = () => {
   return (
       <ApolloProvider client={client}>
-       <Router history={history}>
+       <Router>
         <div>
           <Route path="/" component={App} />
           <Route exact path="/" component={ItemList} />
           <Route path="/login" component={LoginForm} />
           <Route path="/signup" component={SignupForm} />
           <Route path="/items/:id" component={ItemDetail} />
-          {/* <Route exact path="/items/:id" render={(props) => <ItemDetail {...props}/>} /> */}
-          {/* <Route exact path="/dashboard" component={requireAuth(Dashboard)} /> */}
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/user/items/new" component={requireAuth(ItemCreate)} />
-          <Route path="/user/items/:id" component={requireAuth (ItemEdit)} />
+          <Route exact path="/dashboard" component={requireAuth(Dashboard)} />
+          {/* <Route path="/user/items/new" component={ItemCreate} /> */}
+          {/* <Route path="/user/items/new" exact component={requireAuth(ItemCreate)} />
+          <Route path="/user/items/:id" exact component={requireAuth (ItemEdit)} /> */}
         </div>
         </Router>
       </ApolloProvider>

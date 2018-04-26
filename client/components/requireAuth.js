@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import history from '../history';
+// import history from '../history';
 
 import currentUserQuery from '../queries/currentUser';
 
@@ -11,9 +11,9 @@ export default (WrappedComponent) => {
 
       if(!nextProps.data.loading && !nextProps.data.user) {
         console.log('has next props auth');
-        history.push('/login');
+        // history.push('/login');
       } else {
-        history.pushState('/dashboard');
+        // history.pushState('/dashboard');
       }
     }
     render() {

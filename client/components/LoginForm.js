@@ -18,7 +18,7 @@ class LoginForm extends Component {
 
   componentWillUpdate(nextProps) {
     if(!this.props.data.user && nextProps.data.user) {
-      console.log('success on login');
+      // console.log('success on login');
       history.push('/dashboard');
     }
   }

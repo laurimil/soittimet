@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 
 import mutation from '../mutations/itemEdit';
@@ -61,6 +61,7 @@ class ItemEdit extends Component {
   }
 }
 
+ItemEdit = withRouter(ItemEdit);
 export default graphql(mutation)(
   graphql(itemDetail, {
     options: (props) => { return { variables: { id: props.params.id } } }

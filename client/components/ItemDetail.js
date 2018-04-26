@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { graphql, Query } from 'react-apollo';
 import itemDetail from '../queries/itemDetail';
 
@@ -43,8 +44,9 @@ class ItemDetail extends Component {
     );
   }
 }
-// export default ItemDetail;
+
+ItemDetail = withRouter(ItemDetail);
 
 export default graphql(itemDetail, {
-  options: (props) => { return { variables: { id: props.match.params.id } } }
+  options: (props) => { return { variables: { id: props.match.params.id } }; }
 })(ItemDetail);

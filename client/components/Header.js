@@ -12,9 +12,7 @@ class Header extends Component {
       refetchQueries: [{ query }]
     });
   }
-  onBoardClick(){
-    history.push('/dashboard');
-  }
+  
   renderButtons(){
     const { loading, user } = this.props.data;
     // console.log('Header ' + this.props.data.user);
@@ -23,7 +21,7 @@ class Header extends Component {
     if (user) {
       return (
         <div>
-          <li><a onClick={this.onBoardClick.bind(this)}>User</a></li>
+          <li><Link to="/dashboard">Dashboard</Link></li>
           <li><a onClick={this.onLogoutClick.bind(this)}>Logout</a></li>
         </div>
         );
