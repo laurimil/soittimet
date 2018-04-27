@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "nodemon index.js --ignore client",
     "start": "nodemon index.js",
-    "build": "webpack --config webpack.prod.js"
+    "dev-build": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -43,7 +44,6 @@
     "grunt-cli": "^1.2.0",
     "history": "^4.7.2",
     "html-webpack-plugin": "^3.0.7",
-    "lodash": "^4.17.4",
     "mongoose": "^5.0.11",
     "nodemon": "^1.12.5",
     "passport": "^0.4.0",
@@ -60,6 +60,7 @@
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.17",
     "dotenv": "^5.0.1",
+    "webpack-cli": "^2.0.15",
     "webpack-merge": "^4.1.1"
   }
 }

@@ -43,7 +43,7 @@ class ItemCreate extends Component {
     return (
       <div>
         Item Create
-        <Link to="dashboard">Dashboard</Link>
+        <Link to="/dashboard">Dashboard</Link>
         <h3>Create a New Listing</h3>
         <ItemForm errors={this.state.errors} onSubmit={this.onSubmit.bind(this)} item={item}/>
       </div>
