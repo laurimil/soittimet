@@ -41,6 +41,7 @@
     "grunt-cli": "^1.2.0",
     "html-webpack-plugin": "^3.0.7",
     "lodash": "^4.17.4",
+    "material-ui": "^0.20.0",
     "mongoose": "^5.0.11",
     "nodemon": "^1.12.5",
     "passport": "^0.4.0",
