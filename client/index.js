@@ -44,8 +44,10 @@ const Root = () => {
           <Route path="/items/:id" component={ItemDetail} />
           <Route exact path="/dashboard" component={requireAuth(Dashboard)} />
           {/* <Route path="/user/items/new" component={ItemCreate} /> */}
-          {/* <Route path="/user/items/new" exact component={requireAuth(ItemCreate)} />
-          <Route path="/user/items/:id" exact component={requireAuth (ItemEdit)} /> */}
+          <Switch>
+            <Route path="/user/items/new" exact component={requireAuth(ItemCreate)} />
+            <Route path="/user/items/:id" exact component={requireAuth (ItemEdit)} />
+          </Switch>
         </div>
         </Router>
       </ApolloProvider>

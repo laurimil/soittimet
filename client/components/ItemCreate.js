@@ -14,21 +14,22 @@ class ItemCreate extends Component {
   }
 
   onSubmit(data) {
-    // event.preventDefault();
-    // const { title, description, maker, year, price } = data;
+    event.preventDefault();
+    const { title, description, maker, year, price } = data;
 
-    // this.props.mutate({
-    //   variables: { title, description, maker, year, price, userId: this.props.data.user.id
-    //   }
-    // }).catch(res => {
-    //   const errors = res.graphQLErrors.map(error => error.message);
-    //   this.setState({errors});
-    // });
-    // hashHistory.push('/dashboard');
+    this.props.mutate({
+      variables: { title, description, maker, year, price, userId: this.props.data.user.id
+      }
+    }).catch(res => {
+      const errors = res.graphQLErrors.map(error => error.message);
+      this.setState({errors});
+    });
+    this.props.history.push('/dashboard');
   }
 
   render(){
-    // console.log(this.props.history);
+
+    console.log(this.props.data.user);
     const { user } = this.props.data;
     if(!user) { return <div>Loading...</div>; }
     const item = {
@@ -41,6 +42,7 @@ class ItemCreate extends Component {
 
     return (
       <div>
+        Item Create
         <Link to="dashboard">Dashboard</Link>
         <h3>Create a New Listing</h3>
         <ItemForm errors={this.state.errors} onSubmit={this.onSubmit.bind(this)} item={item}/>
@@ -50,6 +52,7 @@ class ItemCreate extends Component {
 }
 
 ItemCreate = withRouter(ItemCreate);
+
 export default graphql(query)(
   graphql(mutation)(ItemCreate)
 );
