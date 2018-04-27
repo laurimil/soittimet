@@ -24,8 +24,8 @@ const ItemType = new GraphQLObjectType({
       resolve(parentValue){
         return Item.findById(parentValue).populate('user')
           .then(item => {
-            console.log(item)
-            return item.user
+            console.log(item);
+            return item.user;
           });
       }
     }

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
-import { hashHistory} from 'react-router';
 
 class ItemForm extends Component {
   constructor(props) {
     super(props);
 
-    const {id, title, description, maker, year, price } = props.item;
+    const {title, description, maker, year, price } = props.item;
+    console.log(props.item);
 
-    this.state = { id, title, description, maker, year, price };
+    this.state = { title, description, maker, year, price };
   }
 
   onSubmit(event) {
@@ -18,7 +17,7 @@ class ItemForm extends Component {
   }
   onCancel(event){
     event.preventDefault();
-    hashHistory.push('/dashboard');
+    this.props.history.push('/dashboard');
   }
 
   render() {
@@ -52,7 +51,6 @@ class ItemForm extends Component {
           <button className="btn right">Save</button>
         </form>
       </div>
-
     );
   }
 }

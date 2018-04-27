@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 class UserItems extends Component {
 
   renderItems(){
-    return this.props.items.map(({ id, title }) => {
-      return (
-        <li key={id} className="collection-item">
-          {title}
-          <Link to={`user/items/${id}`}>
-            <i className="material-icons right">edit</i>
-          </Link>
-          <i
-            className="material-icons right"
-            onClick={()=> this.props.onItemDelete(id)}>delete</i>
-        </li>
-      );
-    });
+    if(this.props.items){
+      return this.props.items.map(({ id, title }) => {
+        return (
+          <li key={id} className="collection-item">
+            {title}
+            <Link to={`user/items/${id}`}>
+              <i className="material-icons right">edit</i>
+            </Link>
+            <i
+              className="material-icons right"
+              onClick={()=> this.props.onItemDelete(id)}>delete</i>
+          </li>
+        );
+      });
+    } else {
+      return (<div>You have no items</div>);
+    }
   }
 
   render() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, hashHistory } from 'react-router';
+import { Link, withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import query from '../queries/currentUser';
 import mutation from '../mutations/itemCreate';
@@ -24,11 +24,12 @@ class ItemCreate extends Component {
       const errors = res.graphQLErrors.map(error => error.message);
       this.setState({errors});
     });
-    hashHistory.push('/dashboard');
+    this.props.history.push('/dashboard');
   }
 
   render(){
-    
+
+    console.log(this.props.data.user);
     const { user } = this.props.data;
     if(!user) { return <div>Loading...</div>; }
     const item = {
@@ -37,17 +38,20 @@ class ItemCreate extends Component {
       maker: '',
       year: '',
       price: ''
-    }
+    };
 
     return (
       <div>
-        <Link to="dashboard">Dashboard</Link>
+        Item Create
+        <Link to="/dashboard">Dashboard</Link>
         <h3>Create a New Listing</h3>
         <ItemForm errors={this.state.errors} onSubmit={this.onSubmit.bind(this)} item={item}/>
       </div>
     );
   }
 }
+
+ItemCreate = withRouter(ItemCreate);
 
 export default graphql(query)(
   graphql(mutation)(ItemCreate)

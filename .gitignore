@@ -5,3 +5,4 @@ node_modules
 *.dev
 .DS_Store
 npm-debug.log
+.eslintrc
