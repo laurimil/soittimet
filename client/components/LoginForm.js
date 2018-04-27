@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { hashHistory } from 'react-router';
+// import { hashHistory } from 'react-router';
 import { graphql } from 'react-apollo';
 
 import query from '../queries/currentUser';
 import mutation from '../mutations/login';
 import AuthForm from './AuthForm';
+
+import history from '../history';
 
 
 class LoginForm extends Component {
@@ -16,11 +18,13 @@ class LoginForm extends Component {
 
   componentWillUpdate(nextProps) {
     if(!this.props.data.user && nextProps.data.user) {
-      hashHistory.push('/dashboard');
+      // console.log('success on login');
+      history.push('/dashboard');
     }
   }
 
   onSubmit({ email, password }){
+    console.log(this.props);
     this.props.mutate({
       variables: { email, password },
       refetchQueries: [{ query }]

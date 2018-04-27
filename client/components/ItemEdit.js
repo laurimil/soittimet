@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link, hashHistory } from 'react-router';
+import { Link, withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 
 import mutation from '../mutations/itemEdit';
-import fetchItem from '../queries/fetchItem';
+import itemDetail from '../queries/itemDetail';
 import userItems from '../queries/userItems';
 
 import ItemForm from './ItemForm';
@@ -44,7 +44,7 @@ class ItemEdit extends Component {
       const errors = res.graphQLErrors.map(error => error.message);
       this.setState({errors});
     });
-    hashHistory.push('/dashboard');
+    // hashHistory.push('/dashboard');
   }
 
   render(){
@@ -61,8 +61,9 @@ class ItemEdit extends Component {
   }
 }
 
+ItemEdit = withRouter(ItemEdit);
 export default graphql(mutation)(
-  graphql(fetchItem, {
+  graphql(itemDetail, {
     options: (props) => { return { variables: { id: props.params.id } } }
   })(ItemEdit)
 );
