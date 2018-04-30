@@ -7,7 +7,7 @@
   "description": "music instruments sales app",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js --ignore client",
+    "dev": "nodemon -r dotenv/config index.js --ignore client",
     "start": "node index.js",
     "dev-build": "webpack --mode development",
     "build": "webpack --mode production"
