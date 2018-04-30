@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter as Router, Route, Link } from 'react-router-dom'
-// import { Router, IndexRoute } from 'react-router';
-import ApolloClient from 'apollo-client';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { HttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory'
-import { ApolloProvider } from 'react-apollo';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloProvider, createNetworkInterface} from 'react-apollo';
+import ApolloClient from 'apollo-boost';
 
 
 import App from './components/App';
@@ -18,12 +17,14 @@ import ItemDetail from './components/ItemDetail';
 import ItemList from './components/ItemList';
 import ItemEdit from './components/ItemEdit';
 
+// import history from './history';
+
 const link = new HttpLink({
   uri: '/graphql',
   opts: {
     credentials: 'same-origin'
   }
-})
+});
 
 const client = new ApolloClient({
   link,
@@ -33,23 +34,24 @@ const client = new ApolloClient({
 
 const Root = () => {
   return (
-    <ApolloProvider client={client}>
-      {/* <Router history={hashHistory}> */}
-      <Router>
+      <ApolloProvider client={client}>
+       <Router>
         <div>
-          <Route path="/" component={App}>
-            <Route path="list" component={ItemList} />
-            <Route path="login" component={LoginForm} />
-            <Route path="signup" component={SignupForm} />
-            <Route path="dashboard" component={requireAuth(Dashboard)} />
-            <Route path="items/new" component={requireAuth(ItemCreate)} />
-            <Route path="items/:id" component={ItemDetail} />
-            <Route path="user/items/:id" component={ItemEdit} />
-          </Route>
+          <Route path="/" component={App} />
+          <Route exact path="/" component={ItemList} />
+          <Route path="/login" component={LoginForm} />
+          <Route path="/signup" component={SignupForm} />
+          <Route path="/items/:id" component={ItemDetail} />
+          <Route exact path="/dashboard" component={requireAuth(Dashboard)} />
+          {/* <Route path="/user/items/new" component={ItemCreate} /> */}
+          <Switch>
+            <Route path="/user/items/new" exact component={requireAuth(ItemCreate)} />
+            <Route path="/user/items/:id" exact component={requireAuth (ItemEdit)} />
+          </Switch>
         </div>
-      </Router>
-      {/* </Router> */}
-    </ApolloProvider>
+        </Router>
+      </ApolloProvider>
+    
   );
 };
 

@@ -9,6 +9,6 @@ const App = (props) => {
       {props.children}
     </div>
   );
-}
+};
 
 export default App;
