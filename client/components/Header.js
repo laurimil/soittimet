@@ -4,6 +4,7 @@ import query from '../queries/currentUser';
 import { Link } from 'react-router-dom';
 import mutation from '../mutations/logout';
 import history from '../history';
+import AppBar from 'material-ui/AppBar';
 
 class Header extends Component {
 
@@ -40,7 +41,12 @@ class Header extends Component {
   }
   render() {
     return (
+      
       <nav>
+        <AppBar
+    title="Title"
+    iconClassNameRight="muidocs-icon-navigation-expand-more"
+  />
         <div className="nav-wrapper">
           <Link to="/" className="brand-logo left">Home</Link>
           <ul className="right">

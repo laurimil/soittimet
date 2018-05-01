@@ -12,7 +12,6 @@ const bodyParser = require('body-parser');
 
 // Create a new Express application
 const app = express();
-// require('dotenv').config();
 
 // Mongoose's built in promise library is deprecated, replace it with ES2015 Promise
 mongoose.Promise = global.Promise;
