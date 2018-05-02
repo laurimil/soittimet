@@ -1,13 +1,25 @@
 import React from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import createMuiTheme from 'material-ui/styles/createMuiTheme';
+import {grey, amber, red, dark} from 'material-ui/colors';
+
+const muiTheme = createMuiTheme({
+  palette: {
+    primary: grey,
+    accent: amber,
+    error: red,
+    type: 'dark'
+  }
+});
+
 import Header from './Header';
-import ItemList from './ItemList';
 
 const App = (props) => {
   return (
-    <div className="container">
+    <MuiThemeProvider theme={muiTheme}>
       <Header />
       {props.children}
-    </div>
+    </MuiThemeProvider>
   );
 };
 

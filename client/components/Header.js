@@ -1,9 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { graphql } from 'react-apollo';
-import query from '../queries/currentUser';
 import { Link } from 'react-router-dom';
+
 import mutation from '../mutations/logout';
-import history from '../history';
+import query from '../queries/currentUser';
+
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+};
 
 class Header extends Component {
 
@@ -40,18 +52,35 @@ class Header extends Component {
   }
   render() {
     return (
-      <nav>
-        <div className="nav-wrapper">
-          <Link to="/" className="brand-logo left">Home</Link>
-          <ul className="right">
-            {this.renderButtons()}
-          </ul>
-        </div>
+      <div className={classes.root}>
+      <AppBar position="static" color="default">
+        <Toolbar>
+          <Typography variant="title" color="inherit">
+            Title
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </div>
+      
+      // {/* <nav>
+      //   <div className="nav-wrapper">
+      //     <Link to="/" className="brand-logo left">Home</Link>
+      //     <ul className="right">
+      //       {this.renderButtons()}
+      //     </ul>
+      //   </div>
 
-      </nav>
+      // </nav> */}
+      
     );
   }
 }
+
+Header.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+Header= withStyles(styles)(Header);
 
 export default graphql(mutation)(
   graphql(query)(Header)
