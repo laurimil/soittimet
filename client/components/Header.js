@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
 
@@ -10,20 +10,55 @@ import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import Button from 'material-ui/Button';
+import Icon from 'material-ui/Icon';
+import IconButton from 'material-ui/IconButton';
 
-const styles = {
+import InputIcon from '@material-ui/icons/Input';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+
+
+
+const styles = theme => ({
   root: {
     flexGrow: 1,
   },
+  flex: {
+    flex: 1,
+  },
+  button: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+});
+
+const ButtonLink = (props) => {
+  const { primary, to, icon} = props;
+  return (
+      <Button component={Link} to={to}>
+        {primary}
+        {icon}
+      </Button>
+  );
 };
 
-class Header extends Component {
+ButtonLink.propTypes = {
+  primary: PropTypes.node.isRequired,
+  to: PropTypes.string.isRequired,
+  icon: PropTypes.node,
+};
 
+
+class Header extends Component {
+  
   onLogoutClick() {
     this.props.mutate({
       refetchQueries: [{ query }]
     });
   }
+
+
   
   renderButtons(){
     const { loading, user } = this.props.data;
@@ -51,13 +86,29 @@ class Header extends Component {
     }
   }
   render() {
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static" color="primary">
         <Toolbar>
-          <Typography variant="title" color="inherit">
-            Title
+          <Typography 
+            variant="title" 
+            color="inherit"
+            >
+            SOITTIMET.NET
           </Typography>
+          {this.props.data.user && (
+            <div>
+              <ButtonLink to="/dashboard" primary="DashBoard" icon={<AccountCircle />} />
+              <Button primary="Logout" onClick={this.onLogoutClick} icon={<InputIcon />} />
+            </div>
+          )}  
+          {!this.props.data.user && (
+            <div>
+              <ButtonLink to="/signup" primary="SignUp" icon={<InputIcon />} />
+              <ButtonLink to="/login" primary="Login" icon={<InputIcon />} />
+            </div>
+         )}
         </Toolbar>
       </AppBar>
     </div>
@@ -80,7 +131,7 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-Header= withStyles(styles)(Header);
+Header = withStyles(styles)(Header);
 
 export default graphql(mutation)(
   graphql(query)(Header)

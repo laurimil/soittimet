@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';
+
+import Button from 'material-ui/Button';
+
 import query from '../queries/currentUser';
 import mutation from '../mutations/itemCreate';
 
 import ItemForm from './ItemForm';
+import LinkButton from '../elements/LinkButton';
 
 class ItemCreate extends Component {
   constructor(props){
@@ -23,13 +27,14 @@ class ItemCreate extends Component {
     }).catch(res => {
       const errors = res.graphQLErrors.map(error => error.message);
       this.setState({errors});
+      if(!errors) {
+        this.props.history.push('/dashboard');
+      }
     });
-    this.props.history.push('/dashboard');
+    
   }
 
   render(){
-
-    console.log(this.props.data.user);
     const { user } = this.props.data;
     if(!user) { return <div>Loading...</div>; }
     const item = {
@@ -42,10 +47,9 @@ class ItemCreate extends Component {
 
     return (
       <div>
-        Item Create
-        <Link to="/dashboard">Dashboard</Link>
-        <h3>Create a New Listing</h3>
-        <ItemForm errors={this.state.errors} onSubmit={this.onSubmit.bind(this)} item={item}/>
+        <LinkButton to="/dashboard" primary="dashboard" />
+        <h3>Tee uusi ilmoitus</h3>
+        <ItemForm errors={this.state.errors} onSubmit={this.onSubmit.bind(this)} item={item} {...this.props}/>
       </div>
     );
   }

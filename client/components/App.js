@@ -1,14 +1,13 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import createMuiTheme from 'material-ui/styles/createMuiTheme';
-import {grey, amber, red, dark} from 'material-ui/colors';
+import {purple, amber, red, dark} from 'material-ui/colors';
 
 const muiTheme = createMuiTheme({
   palette: {
-    primary: grey,
+    primary: purple,
     accent: amber,
     error: red,
-    type: 'dark'
   }
 });
 
