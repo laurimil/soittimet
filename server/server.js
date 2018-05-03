@@ -1,5 +1,6 @@
 const express = require('express');
 const models = require('./models');
+const path = require ('path');
 const expressGraphQL = require('express-graphql');
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -11,16 +12,13 @@ const bodyParser = require('body-parser');
 
 // Create a new Express application
 const app = express();
-
-// Replace with your mongoLab URI
-
+// require('dotenv').config();
 
 // Mongoose's built in promise library is deprecated, replace it with ES2015 Promise
 mongoose.Promise = global.Promise;
 
 // Connect to the mongoDB instance and log a message
 // on success or failure
-console.log(process.env.MONGODB_URI);
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection
     .once('open', () => console.log('Connected to MongoLab instance.'))
@@ -55,6 +53,16 @@ app.use('/graphql', expressGraphQL({
 }));
 
 app.use(bodyParser.json());
+
+app.use(express.static('/client'));
+
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.resolve('client','index.html'), function(err) {
+//     if (err) {
+//       res.status(500).send(err);
+//     }
+//   });
+// });
 
 // Webpack runs as a middleware.  If any request comes in for the root route ('/')
 // Webpack will respond with the output of the webpack process: an HTML file and

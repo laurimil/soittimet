@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  query FetchItem ($id:ID!){
+  query ItemDetail ($id:ID!){
     item(id:$id) {
       id
       title

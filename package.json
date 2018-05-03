@@ -1,60 +1,66 @@
 {
-  "name": "soittimet-react-gql",
+  "name": "soittimet",
   "version": "1.0.0",
   "engines": {
-    "node": "6.10.1"
+    "node": ">=6.10.1"
   },
-  "description": "soitinkirppis",
+  "description": "music instruments sales app",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js --ignore client",
-    "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "dev": "nodemon -r dotenv/config index.js --ignore client",
+    "start": "node index.js",
+    "dev-build": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/laurimil/soittimet-react-gql.git"
+    "url": "https://github.com/laurimil/soittimet.git"
   },
   "author": "Lauri Lehto",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/laurimil/soittimet-react-gql/issues"
+    "url": "https://github.com/laurimil/soittimet/issues"
   },
-  "homepage": "https://github.com/laurimil/soittimet-react-gql#readme",
+  "homepage": "https://github.com/laurimil/soittimet#readme",
   "dependencies": {
-    "apollo-client": "^0.8.2",
-    "axios": "^0.15.3",
+    "apollo-boost": "^0.1.4",
+    "apollo-cache-inmemory": "^1.1.11",
+    "apollo-client": "^2.2.7",
+    "apollo-link-http": "^1.5.3",
+    "axios": "^0.18.0",
     "babel-core": "^6.22.1",
-    "babel-loader": "^6.2.10",
+    "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.1.8",
     "babel-preset-react": "^6.22.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.16.0",
-    "connect-mongo": "^1.3.2",
+    "connect-mongo": "^2.0.1",
     "express": "^4.14.0",
     "express-graphql": "^0.6.1",
     "express-session": "^1.15.0",
     "foreman": "^2.0.0",
-    "graphql": "^0.8.2",
-    "graphql-tag": "^1.2.4",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.8.0",
     "grunt-cli": "^1.2.0",
-    "html-webpack-plugin": "^2.26.0",
-    "lodash": "^4.17.4",
-    "mongoose": "^4.7.8",
+    "history": "^4.7.2",
+    "html-webpack-plugin": "^3.0.7",
+    "mongoose": "^5.0.11",
     "nodemon": "^1.12.5",
-    "passport": "^0.3.2",
+    "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "react": "^15.4.2",
-    "react-apollo": "^0.10.0",
-    "react-dom": "^15.4.2",
-    "react-router": "^3.0.2",
-    "webpack": "^2.2.0",
-    "webpack-dev-middleware": "^1.9.0"
+    "react": "^16.2.0",
+    "react-apollo": "^2.0.4",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "webpack": "^4.2.0",
+    "webpack-dev-middleware": "^3.0.1",
+    "webpack-dev-server": "^3.1.3"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.17",
-    "dotenv": "^4.0.0",
+    "dotenv": "^5.0.1",
+    "webpack-cli": "^2.0.15",
     "webpack-merge": "^4.1.1"
   }
 }
