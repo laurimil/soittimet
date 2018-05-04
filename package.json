@@ -1,5 +1,6 @@
 {
-  "name": "soittimet",
+
+  "name": "soittimet.net",
   "version": "1.0.0",
   "engines": {
     "node": ">=6.10.1"
@@ -27,6 +28,7 @@
     "apollo-cache-inmemory": "^1.1.11",
     "apollo-client": "^2.2.7",
     "apollo-link-http": "^1.5.3",
+
     "axios": "^0.18.0",
     "babel-core": "^6.22.1",
     "babel-loader": "^7.1.4",
@@ -42,7 +44,6 @@
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",
     "grunt-cli": "^1.2.0",
-    "history": "^4.7.2",
     "html-webpack-plugin": "^3.0.7",
     "mongoose": "^5.0.11",
     "nodemon": "^1.12.5",
