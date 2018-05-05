@@ -37,10 +37,12 @@ class DashBoard extends Component {
     }
 
     return (
-      <div>
-        <h3>User</h3>
+      <div className="container">
+        {/* <h3>User</h3> */}
         <UserItems items={user.items} onItemDelete={this.onItemDelete}/>
-        <Link to="user/items/new">Create New Item</Link>
+        <div class="card-action">
+        <Link to="user/items/new" role="a" className="waves-effect waves-teal btn-flat">Create New Item</Link>
+        </div>
       </div>
     );
   }

@@ -28,8 +28,6 @@ class ItemCreate extends Component {
   }
 
   render(){
-
-    console.log(this.props.data.user);
     const { user } = this.props.data;
     if(!user) { return <div>Loading...</div>; }
     const item = {
@@ -41,10 +39,9 @@ class ItemCreate extends Component {
     };
 
     return (
-      <div>
-        Item Create
-        <Link to="/dashboard">Dashboard</Link>
-        <h3>Create a New Listing</h3>
+      <div className="container">
+        <Link to="/dashboard" type="a" className="waves-effect waves-teal btn-flat">Back to Dashboard</Link>
+        <h3>Create a New Item</h3>
         <ItemForm errors={this.state.errors} onSubmit={this.onSubmit.bind(this)} item={item}/>
       </div>
     );

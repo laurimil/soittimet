@@ -11,35 +11,27 @@ class ItemDetail extends Component {
   // }
 
   render() {
-    if(this.props.data.loading) {return <div>Loading...</div>; }
+    if(this.props.data.loading) {return <div className="container">Loading...</div>; }
     
     const {title,description,maker,year,price} = this.props.data.item;
 
     return (
-      <div>
+      <div className="container">
         
         {/* <Query query={fetchItem}>
 
         </Query> */}
-        <div class="mdl-card mdl-shadow--2dp">
-          <div class="mdl-card__title mdl-card--expand">
-            <h2 class="mdl-card__title-text">{title}</h2>
-          </div>
-          <div class="mdl-card__supporting-text">
+        <div class="card">
+          <div class="card-content">
+            <h2 class="card-title">{title}</h2>
             <p>{description}</p>
             <p>{maker},{year}</p>
             <p>{price}</p>
           </div>
-          <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-              View Updates
-            </a>
+          <div class="card-action">
+            <a href="#">Ota yhteyttä ilmoittajaan</a>
           </div>
         </div>
-
-       
-      
-
       </div>
     );
   }
