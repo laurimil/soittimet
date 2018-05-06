@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import {Footer} from './Footer';
 import ItemList from './ItemList';
 
 const App = (props) => {
@@ -7,6 +8,7 @@ const App = (props) => {
     <div className="container">
       <Header />
       {props.children}
+      {/* <Footer /> */}
     </div>
   );
 };

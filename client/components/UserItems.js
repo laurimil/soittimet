@@ -28,7 +28,7 @@ class UserItems extends Component {
   render() {
     return (
       <ul className="collection">
-        <h3>Your Items</h3>
+        <h3 header>Your Items</h3>
         {this.renderItems()}
       </ul>
     );

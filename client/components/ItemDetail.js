@@ -17,22 +17,23 @@ class ItemDetail extends Component {
 
     return (
       <div className="container">
-        
-        {/* <Query query={fetchItem}>
-
-        </Query> */}
-        <div class="card">
-          <div class="card-content">
-            <h2 class="card-title">{title}</h2>
-            <p>{description}</p>
-            <p>{maker},{year}</p>
-            <p>{price}</p>
+        <div className="card horizontal">
+          <div className="card-image">
+            <img src="img/default.img" />
           </div>
-          <div class="card-action">
-            <a href="#">Ota yhteyttä ilmoittajaan</a>
+          <div className="card-stacked">
+            <div className="card-content">
+              <h2 className="card-title">{title}</h2>
+              <p>{description}</p>
+              <p>{maker},{year}</p>
+              <p>{price}</p>
+            </div>
+            <div className="card-action">
+              <a href="#">Ota yhteyttä ilmoittajaan</a>
+            </div>
           </div>
         </div>
-      </div>
+      </div>      
     );
   }
 }

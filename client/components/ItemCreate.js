@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';
+
 import query from '../queries/currentUser';
+import userItems from '../queries/userItems';
 import mutation from '../mutations/itemCreate';
 
 import ItemForm from './ItemForm';
@@ -19,11 +21,21 @@ class ItemCreate extends Component {
 
     this.props.mutate({
       variables: { title, description, maker, year, price, userId: this.props.data.user.id
-      }
+      },
+      update: (proxy, { data: { createItem } }) => {
+        // Read the data from our cache for this query.
+        const data = proxy.readQuery({ query: userItems });
+
+        // Add our todo from the mutation to the end.
+        data.user.items.push(createItem);
+
+        // Write our data back to the cache.
+        proxy.writeQuery({ query: userItems, data });
+      },
     }).catch(res => {
       const errors = res.graphQLErrors.map(error => error.message);
       this.setState({errors});
-    });
+    }).then(()=> this.props.data.refetch());
     this.props.history.push('/dashboard');
   }
 

@@ -10,18 +10,25 @@ class ItemList extends Component {
   renderItems(){
     return this.props.data.items.map(({id, title, price}) => {
       return (
-        <div key={id} className="col xs-12 s-6 m-4 l-2">
+        <main>
+        <div key={id} className="col xs12 s6 m4 l2">
           <Link to={`items/${id}`}>
-            <div>{title}</div>
-            <div>Price: {price}</div>
-            <img src="img/default.png"/>
+            <div className="card small light-blue lighten-4">
+              <div className="card-image ">
+                <img src="img/default.png"/>
+                <span className="card-title">{title}</span>
+              </div>
+              <div className="card-content text-white">
+                <p>Price: {price}</p>
+              </div>
+              <div class="card-action text-white">
+                <a href="#">This is a link</a>
+              </div>
+            </div>
+            
           </Link>
         </div>
-      //   <div class="row">
-      //   <div class="col s12">This div is 12-columns wide on all screen sizes</div>
-      //   <div class="col s6">6-columns (one-half)</div>
-      //   <div class="col s6">6-columns (one-half)</div>
-      // </div>
+      </main>
       );
     });
   }
@@ -30,9 +37,11 @@ class ItemList extends Component {
     if(this.props.data.loading) { return <div>Loading...</div>; }
 
     return (
-      <div className="container">
-        <div className="row">
-          {this.renderItems()}
+      <div className="section">
+        <div className="container">
+          <div className="row">
+            {this.renderItems()}
+          </div>
         </div>
       </div>
     );

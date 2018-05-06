@@ -11,15 +11,16 @@ import ItemForm from './ItemForm';
 class ItemEdit extends Component {
   constructor(props){
     super(props);
-
+    console.log(props);
     this.state = { errors: [] };
   }
 
   onSubmit(data) {
     event.preventDefault();
-    const { id, title, description, maker, year, price } = data;
+    const { title, description, maker, year, price } = data;
+    const { id } = this.props.data.item;
 
-    console.log(data);
+    console.log(this.props);
 
     this.props.mutate({
       variables: {
@@ -30,31 +31,22 @@ class ItemEdit extends Component {
         year,
         price
       },
-      update: (proxy, { data: { createItem } }) => {
-        // Read the data from our cache for this query.
-        const data = proxy.readQuery({ query: userItems });
-
-        // Add our todo from the mutation to the end.
-        data.user.items.push(createItem);
-
-        // Write our data back to the cache.
-        proxy.writeQuery({ query: userItems, data });
-      },
     }).catch(res => {
       const errors = res.graphQLErrors.map(error => error.message);
       this.setState({errors});
-    });
-    // hashHistory.push('/dashboard');
+    }).then(() => this.props.data.refetch());
+    this.props.history.push('/dashboard');
   }
 
   render(){
+    console.log(this.props);
     if(this.props.data.loading) { return <div>Loading...</div>; }
     const {item}=this.props.data;
 
     return (
-      <div>
-        <Link to="dashboard">Dashboard</Link>
-        <h3>Edit Your Listing</h3>
+      <div className="container">
+        <Link to="dashboard" type="a" className="waves-effect waves-teal btn-flat">Back to Dashboard</Link>
+        <h3 className="header">Edit Your Item</h3>
         <ItemForm errors={this.state.errors} onSubmit={this.onSubmit.bind(this)} item={item} />
       </div>
     );
@@ -62,8 +54,9 @@ class ItemEdit extends Component {
 }
 
 ItemEdit = withRouter(ItemEdit);
+
 export default graphql(mutation)(
   graphql(itemDetail, {
-    options: (props) => { return { variables: { id: props.params.id } } }
+    options: (props) => { return { variables: { id: props.match.params.id } }; }
   })(ItemEdit)
 );

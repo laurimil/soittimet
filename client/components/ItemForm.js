@@ -17,6 +17,7 @@ class ItemForm extends Component {
   }
   onCancel(event){
     event.preventDefault();
+    console.log(this.props);
     this.props.history.push('/dashboard');
   }
 

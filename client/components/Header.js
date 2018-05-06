@@ -40,15 +40,16 @@ class Header extends Component {
   }
   render() {
     return (
+      <header>
       <nav>
-        <div className="nav-wrapper">
-          <Link to="/" className="brand-logo left">Home</Link>
+        <div className="nav-wrapper light-blue lighten-1">
+          <Link to="/" className="brand-logo left">Soittimet.Net</Link>
           <ul className="right">
             {this.renderButtons()}
           </ul>
         </div>
-
       </nav>
+      </header>
     );
   }
 }
