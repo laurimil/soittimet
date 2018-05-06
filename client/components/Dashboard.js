@@ -33,15 +33,19 @@ class DashBoard extends Component {
   render() {
     const { user } = this.props.data;
     if(!user) {
-      return <div>Loading...</div>;
+      return <div className="container">Loading...</div>;
     }
 
     return (
-      <div>
-        <h3>User</h3>
+      <main>
+      <div className="container">
+        {/* <h3>User</h3> */}
         <UserItems items={user.items} onItemDelete={this.onItemDelete}/>
-        <Link to="user/items/new">Create New Item</Link>
+        <div class="card-action">
+        <Link to="user/items/new" role="a" className="waves-effect waves-teal btn-flat">Create New Item</Link>
+        </div>
       </div>
+      </main>
     );
   }
 }

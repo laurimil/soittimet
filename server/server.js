@@ -55,6 +55,8 @@ app.use('/graphql', expressGraphQL({
 app.use(bodyParser.json());
 
 app.use(express.static('/client'));
+// app.use('/img', express.static('/img'));
+app.use('/img', express.static(path.join(__dirname, '/../img')));
 
 // app.get('/*', (req, res) => {
 //   res.sendFile(path.resolve('client','index.html'), function(err) {

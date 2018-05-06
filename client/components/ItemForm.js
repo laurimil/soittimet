@@ -17,6 +17,7 @@ class ItemForm extends Component {
   }
   onCancel(event){
     event.preventDefault();
+    console.log(this.props);
     this.props.history.push('/dashboard');
   }
 
@@ -48,7 +49,7 @@ class ItemForm extends Component {
             {this.props.errors.map(error => <div key={error}>{error}</div>)}
           </div>
           <button className="btn red" type='button' onClick={this.onCancel}>Cancel</button>
-          <button className="btn right">Save</button>
+          <button className="btn right">Save<i class="material-icons right">send</i></button>
         </form>
       </div>
     );

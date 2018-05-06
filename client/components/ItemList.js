@@ -5,16 +5,30 @@ import gql from 'graphql-tag';
 import query from '../queries/itemList';
 
 class ItemList extends Component {
+  
 
   renderItems(){
     return this.props.data.items.map(({id, title, price}) => {
       return (
-        <li key={id} className="collection-item">
+        <main>
+        <div key={id} className="col xs12 s6 m4 l2">
           <Link to={`items/${id}`}>
-            <div>{title}</div>
-            <div>Price: {price}</div>
+            <div className="card small light-blue lighten-4">
+              <div className="card-image ">
+                <img src="img/default.png"/>
+                <span className="card-title">{title}</span>
+              </div>
+              <div className="card-content text-white">
+                <p>Price: {price}</p>
+              </div>
+              <div class="card-action text-white">
+                <a href="#">This is a link</a>
+              </div>
+            </div>
+            
           </Link>
-        </li>
+        </div>
+      </main>
       );
     });
   }
@@ -23,9 +37,13 @@ class ItemList extends Component {
     if(this.props.data.loading) { return <div>Loading...</div>; }
 
     return (
-      <ul className="collection">
-        {this.renderItems()}
-      </ul>
+      <div className="section">
+        <div className="container">
+          <div className="row">
+            {this.renderItems()}
+          </div>
+        </div>
+      </div>
     );
   }
 }
