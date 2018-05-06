@@ -6,9 +6,6 @@ import query from '../queries/currentUser';
 import mutation from '../mutations/login';
 import AuthForm from './AuthForm';
 
-import history from '../history';
-
-
 class LoginForm extends Component {
   constructor(props){
     super(props);
@@ -19,7 +16,7 @@ class LoginForm extends Component {
   componentWillUpdate(nextProps) {
     if(!this.props.data.user && nextProps.data.user) {
       // console.log('success on login');
-      history.push('/dashboard');
+      this.props.history.push('/dashboard');
     }
   }
 
