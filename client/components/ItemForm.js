@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 class ItemForm extends Component {
   constructor(props) {
@@ -19,6 +21,14 @@ class ItemForm extends Component {
     event.preventDefault();
     console.log(this.props);
     this.props.history.push('/dashboard');
+  }
+  uploadWidget() {
+    event.preventDefault();
+    console.log(process.env.CLOUDINARY_NAME, process.env.CLOUDINARY_UPLOAD_PRESET),
+    cloudinary.openUploadWidget({ cloud_name: process.env.CLOUDINARY_NAME, upload_preset: process.env.CLOUDINARY_UPLOAD_PRESET, tags:['soittimet']},
+        function(error, result) {
+            console.log(result);
+        });
   }
 
   render() {
@@ -45,6 +55,11 @@ class ItemForm extends Component {
           <input
             onChange={event => this.setState({price:event.target.value})}
             value={this.state.price}/>
+          <div className="upload">
+            <button onClick={this.uploadWidget.bind(this)} className="upload-button">
+                Add Image
+            </button>
+          </div>
           <div className="errors">
             {this.props.errors.map(error => <div key={error}>{error}</div>)}
           </div>
@@ -55,5 +70,5 @@ class ItemForm extends Component {
     );
   }
 }
-
+ItemForm = withRouter(ItemForm);
 export default ItemForm;

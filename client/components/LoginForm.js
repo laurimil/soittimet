@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { hashHistory } from 'react-router';
 import { graphql } from 'react-apollo';
 
 import query from '../queries/currentUser';

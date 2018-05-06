@@ -20,8 +20,6 @@ class ItemEdit extends Component {
     const { title, description, maker, year, price } = data;
     const { id } = this.props.data.item;
 
-    console.log(this.props);
-
     this.props.mutate({
       variables: {
         id,
@@ -45,7 +43,7 @@ class ItemEdit extends Component {
 
     return (
       <div className="container">
-        <Link to="dashboard" type="a" className="waves-effect waves-teal btn-flat">Back to Dashboard</Link>
+        <Link to="/dashboard" type="a" className="waves-effect waves-teal btn-flat">Back to Dashboard</Link>
         <h3 className="header">Edit Your Item</h3>
         <ItemForm errors={this.state.errors} onSubmit={this.onSubmit.bind(this)} item={item} />
       </div>

@@ -1,5 +1,4 @@
 {
-
   "name": "soittimet.net",
   "version": "1.0.0",
   "engines": {
@@ -28,7 +27,6 @@
     "apollo-cache-inmemory": "^1.1.11",
     "apollo-client": "^2.2.7",
     "apollo-link-http": "^1.5.3",
-
     "axios": "^0.18.0",
     "babel-core": "^6.22.1",
     "babel-loader": "^7.1.4",
@@ -36,6 +34,7 @@
     "babel-preset-react": "^6.22.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.16.0",
+    "cloudinary-react": "^1.0.6",
     "connect-mongo": "^2.0.1",
     "express": "^4.14.0",
     "express-graphql": "^0.6.1",
@@ -61,6 +60,9 @@
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.17",
     "dotenv": "^5.0.1",
+    "file-loader": "^1.1.11",
+    "image-webpack-loader": "^4.2.0",
+    "url-loader": "^1.0.1",
     "webpack-cli": "^2.0.15",
     "webpack-merge": "^4.1.1"
   }

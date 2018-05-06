@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import gql from 'graphql-tag';
+
 import query from '../queries/itemList';
+
+import image from '../img/default.png';
 
 class ItemList extends Component {
   
@@ -15,7 +18,7 @@ class ItemList extends Component {
           <Link to={`items/${id}`}>
             <div className="card small light-blue lighten-4">
               <div className="card-image ">
-                <img src="img/default.png"/>
+                <img src={image}/>
                 <span className="card-title">{title}</span>
               </div>
               <div className="card-content text-white">

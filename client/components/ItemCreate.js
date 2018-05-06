@@ -54,7 +54,7 @@ class ItemCreate extends Component {
       <div className="container">
         <Link to="/dashboard" type="a" className="waves-effect waves-teal btn-flat">Back to Dashboard</Link>
         <h3>Create a New Item</h3>
-        <ItemForm errors={this.state.errors} onSubmit={this.onSubmit.bind(this)} item={item}/>
+        <ItemForm errors={this.state.errors} onSubmit={this.onSubmit.bind(this)} item={item} />
       </div>
     );
   }

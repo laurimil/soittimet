@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import { graphql, Query } from 'react-apollo';
 import itemDetail from '../queries/itemDetail';
 
+import image from '../img/default.png';
+
 class ItemDetail extends Component {
 
   // componentDidMount() {
@@ -19,7 +21,7 @@ class ItemDetail extends Component {
       <div className="container">
         <div className="card horizontal">
           <div className="card-image">
-            <img src="img/default.img" />
+            <img src={image} />
           </div>
           <div className="card-stacked">
             <div className="card-content">
