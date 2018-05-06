@@ -3,7 +3,6 @@ import { graphql } from 'react-apollo';
 import query from '../queries/currentUser';
 import { Link } from 'react-router-dom';
 import mutation from '../mutations/logout';
-import history from '../history';
 
 class Header extends Component {
 
@@ -11,6 +10,7 @@ class Header extends Component {
     this.props.mutate({
       refetchQueries: [{ query }]
     });
+    this.props.history.push('/');
   }
   
   renderButtons(){
