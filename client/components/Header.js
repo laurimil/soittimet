@@ -42,7 +42,7 @@ class Header extends Component {
     return (
       <header>
       <nav>
-        <div className="nav-wrapper light-blue lighten-1">
+        <div className="nav-wrapper light-blue darken-3">
           <Link to="/" className="brand-logo left">Soittimet.Net</Link>
           <ul className="right">
             {this.renderButtons()}

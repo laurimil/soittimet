@@ -68,6 +68,7 @@ const mutation = new GraphQLObjectType({
         maker: { type: GraphQLString },
         year: { type: GraphQLInt },
         price: { type: GraphQLInt },
+        imageUrl: {type: GraphQLString },
         userId: { type: new GraphQLNonNull(GraphQLID) }
       },
       resolve(parentValue, args) {
@@ -82,7 +83,8 @@ const mutation = new GraphQLObjectType({
         description: { type: GraphQLString },
         maker: { type: GraphQLString },
         year: { type: GraphQLInt },
-        price: { type: GraphQLInt }
+        price: { type: GraphQLInt },
+        imageUrl: { type: GraphQLString },
       },
       resolve(parentValue, args) {
         return Item.editItem(args);

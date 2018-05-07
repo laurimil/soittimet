@@ -10,12 +10,13 @@ const ItemSchema = new Schema({
   description: {type: String, default: ''},
   maker: {type: String, default: ''},
   year: {type: Number, default: 0 },
-  price: {type: Number, default: 0 }
+  price: {type: Number, default: 0 },
+  imageUrl: {type: String, default: ''}
 });
 
 ItemSchema.statics.editItem = function(args) {
-  const {id, title, description, price, maker, year} = args;
-  const itemUpdate = {title, description, price, maker, year};
+  const {id, title, description, price, maker, year, imageUrl} = args;
+  const itemUpdate = {title, description, price, maker, year, imageUrl};
 
   return new Promise((resolve, reject)=>{
     this.findByIdAndUpdate(
@@ -26,6 +27,6 @@ ItemSchema.statics.editItem = function(args) {
       err ? reject(err) : resolve(res);
     });
   });
-}
+};
 
 mongoose.model('item', ItemSchema);
