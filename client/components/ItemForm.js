@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
+import Dropzone from 'react-dropzone';
+
 
 class ItemForm extends Component {
   constructor(props) {
     super(props);
 
-    const {title, description, maker, year, price } = props.item;
+    const {title, description, maker, year, price, imageId } = props.item;
     console.log(props.item);
 
-    this.state = { title, description, maker, year, price };
+    this.state = { title, description, maker, year, price, imageId };
   }
 
   onSubmit(event) {
@@ -22,15 +23,10 @@ class ItemForm extends Component {
     console.log(this.props);
     this.props.history.push('/dashboard');
   }
-  uploadWidget() {
-    event.preventDefault();
-    console.log(process.env.CLOUDINARY_NAME, process.env.CLOUDINARY_UPLOAD_PRESET),
-    cloudinary.openUploadWidget({ cloud_name: process.env.CLOUDINARY_NAME, upload_preset: process.env.CLOUDINARY_UPLOAD_PRESET, tags:['soittimet']},
-        function(error, result) {
-            console.log(result);
-        });
+  onDrop(acceptedFiles){
+    console.log(acceptedFiles);
   }
-
+  
   render() {
 
     return (
@@ -55,11 +51,12 @@ class ItemForm extends Component {
           <input
             onChange={event => this.setState({price:event.target.value})}
             value={this.state.price}/>
-          <div className="upload">
-            <button onClick={this.uploadWidget.bind(this)} className="upload-button">
-                Add Image
-            </button>
-          </div>
+          <input
+            onChange={event => this.setState({imageId:event.target.value})}
+            value={this.state.imageId}/>
+          <Dropzone onDrop={this.onDrop}>
+            Drop your image here!
+          </Dropzone>
           <div className="errors">
             {this.props.errors.map(error => <div key={error}>{error}</div>)}
           </div>
