@@ -9,8 +9,7 @@ class ItemForm extends Component {
 
     const {title, description, maker, year, price, imageId } = props.item;
     console.log(props.item);
-
-    this.state = { title, description, maker, year, price, imageId };
+    this.state = { title, description, maker, year, price, imageId, files: [] };
   }
 
   onSubmit(event) {
@@ -23,8 +22,8 @@ class ItemForm extends Component {
     console.log(this.props);
     this.props.history.push('/dashboard');
   }
-  onDrop(acceptedFiles){
-    console.log(acceptedFiles);
+  onDrop(files){
+    this.setState({files});
   }
   
   render() {
@@ -54,13 +53,19 @@ class ItemForm extends Component {
           <input
             onChange={event => this.setState({imageId:event.target.value})}
             value={this.state.imageId}/>
-          <Dropzone onDrop={this.onDrop}>
-            Drop your image here!
+          <Dropzone accept="image/jpeg, image/png" onDrop={this.onDrop.bind(this)}>
+            <p>Drop your image here!</p>
+            <p>Only *.jpeg and *.png images will be accepted</p>
           </Dropzone>
+          <div>
+            {
+              this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
+            }
+          </div>
           <div className="errors">
             {this.props.errors.map(error => <div key={error}>{error}</div>)}
           </div>
-          <button className="btn red" type='button' onClick={this.onCancel}>Cancel</button>
+          {/* <button className="btn red" type='button' onClick={this.onCancel}>Cancel</button> */}
           <button className="btn right">Save<i class="material-icons right">send</i></button>
         </form>
       </div>

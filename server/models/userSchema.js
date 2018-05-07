@@ -51,12 +51,12 @@ UserSchema.statics.findItems = function(id) {
 
 UserSchema.statics.addItem = function(args) {
   const Item = mongoose.model('item');
-  const { title, description, price, maker, year, userId } = args;
+  const { title, description, price, maker, year, userId, imageId } = args;
 
   return this.findById(userId)
     .then(user => {
-      const item = new Item({ title, description, price, maker, year })
-      user.items.push(item)
+      const item = new Item({ title, description, price, maker, year, imageId });
+      user.items.push(item);
       return Promise.all([item.save(), user.save()])
         .then(([item, user]) => user);
     });
