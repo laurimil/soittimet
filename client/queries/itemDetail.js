@@ -9,11 +9,9 @@ export default gql`
       maker
       year
       price
+      imageUrl
       user{
-        items{
-          id
-          title
-        }
+        email
       }
     }
   }

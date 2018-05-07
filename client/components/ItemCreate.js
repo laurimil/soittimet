@@ -17,10 +17,10 @@ class ItemCreate extends Component {
 
   onSubmit(data) {
     event.preventDefault();
-    const { title, description, maker, year, price } = data;
+    const { title, description, maker, year, price, imageUrl } = data;
 
     this.props.mutate({
-      variables: { title, description, maker, year, price, userId: this.props.data.user.id
+      variables: { title, description, maker, year, price, imageUrl, userId: this.props.data.user.id
       },
       update: (proxy, { data: { createItem } }) => {
         // Read the data from our cache for this query.
@@ -41,13 +41,14 @@ class ItemCreate extends Component {
 
   render(){
     const { user } = this.props.data;
-    if(!user) { return <div>Loading...</div>; }
+    if(!user) { return <div className="container">Loading...</div>; }
     const item = {
       title: '',
       description: '',
       maker: '',
       year: '',
-      price: ''
+      price: '',
+      imageUrl: ''
     };
 
     return (

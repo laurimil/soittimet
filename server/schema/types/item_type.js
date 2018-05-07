@@ -19,12 +19,12 @@ const ItemType = new GraphQLObjectType({
     price: { type: GraphQLInt },
     maker: { type: GraphQLString },
     year: { type: GraphQLInt },
+    imageUrl: {type: GraphQLString },
     user: {
       type: require('./user_type'),
       resolve(parentValue){
         return Item.findById(parentValue).populate('user')
           .then(item => {
-            console.log(item);
             return item.user;
           });
       }

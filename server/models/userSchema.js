@@ -47,19 +47,19 @@ UserSchema.statics.findItems = function(id) {
   return this.findById(id)
     .populate('items')
     .then(user => user.items);
-}
+};
 
 UserSchema.statics.addItem = function(args) {
   const Item = mongoose.model('item');
-  const { title, description, price, maker, year, userId, imageId } = args;
+  const { title, description, price, maker, year, userId, imageUrl } = args;
 
   return this.findById(userId)
     .then(user => {
-      const item = new Item({ title, description, price, maker, year, imageId });
+      const item = new Item({ title, description, price, maker, year, imageUrl });
       user.items.push(item);
       return Promise.all([item.save(), user.save()])
         .then(([item, user]) => user);
     });
-}
+};
 
 mongoose.model('user', UserSchema);

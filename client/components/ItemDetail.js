@@ -7,28 +7,26 @@ import image from '../img/default.png';
 
 class ItemDetail extends Component {
 
-  // componentDidMount() {
-  //   const { match: { params } } = this.props;
-  //   console.log(params);
-  // }
-
   render() {
     if(this.props.data.loading) {return <div className="container">Loading...</div>; }
     
-    const {title,description,maker,year,price} = this.props.data.item;
-
+    const {title,description,maker,year,price,imageUrl} = this.props.data.item;
+    console.log(this.props.data);
     return (
       <div className="container">
         <div className="card horizontal">
           <div className="card-image">
-            <img src={image} />
+            <img src={imageUrl||image} />
           </div>
           <div className="card-stacked">
             <div className="card-content">
               <h2 className="card-title">{title}</h2>
               <p>{description}</p>
-              <p>{maker},{year}</p>
-              <p>{price}</p>
+              <ul class="collection">
+                <li class="collection-item">Maker: {maker}</li>
+                <li class="collection-item">Year: {year}</li>
+                <li class="collection-item">Price: {price}</li>
+              </ul>
             </div>
             <div className="card-action">
               <a href="#">Ota yhteyttä ilmoittajaan</a>

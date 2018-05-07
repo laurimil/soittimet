@@ -11,13 +11,14 @@ import ItemForm from './ItemForm';
 class ItemEdit extends Component {
   constructor(props){
     super(props);
-    console.log(props);
+    
     this.state = { errors: [] };
   }
 
   onSubmit(data) {
     event.preventDefault();
-    const { title, description, maker, year, price } = data;
+    // console.log(data);
+    const { title, description, maker, year, price, imageUrl } = data;
     const { id } = this.props.data.item;
 
     this.props.mutate({
@@ -27,7 +28,8 @@ class ItemEdit extends Component {
         description,
         maker,
         year,
-        price
+        price,
+        imageUrl
       },
     }).catch(res => {
       const errors = res.graphQLErrors.map(error => error.message);
@@ -37,9 +39,9 @@ class ItemEdit extends Component {
   }
 
   render(){
-    console.log(this.props);
-    if(this.props.data.loading) { return <div>Loading...</div>; }
+    if(this.props.data.loading) { return <div className="container">Loading...</div>; }
     const {item}=this.props.data;
+    console.log(item);
 
     return (
       <div className="container">

@@ -11,21 +11,18 @@ class ItemList extends Component {
   
 
   renderItems(){
-    return this.props.data.items.map(({id, title, price}) => {
+    return this.props.data.items.map(({id, title, price, imageUrl}) => {
       return (
         <main>
-        <div key={id} className="col xs12 s6 m4 l2">
+        <div key={id} className="col xs12 s12 m6 l3">
           <Link to={`items/${id}`}>
-            <div className="card small light-blue lighten-4">
+            <div className="card small indigo lighten-5">
               <div className="card-image ">
-                <img src={image}/>
-                <span className="card-title">{title}</span>
+                <img src={imageUrl||image}/>
               </div>
               <div className="card-content text-white">
-                <p>Price: {price}</p>
-              </div>
-              <div class="card-action text-white">
-                <a href="#">This is a link</a>
+                <span className="card-title">{title}</span>
+                <p className="">Price: {price}</p>
               </div>
             </div>
             
@@ -37,7 +34,7 @@ class ItemList extends Component {
   }
 
   render() {
-    if(this.props.data.loading) { return <div>Loading...</div>; }
+    if(this.props.data.loading) { return <div className="container">Loading...</div>; }
 
     return (
       <div className="section">
